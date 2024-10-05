@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class LocalService implements LocalServiceImpl{
@@ -33,9 +34,15 @@ public class LocalService implements LocalServiceImpl{
         if (lc == null) {
             return null;
         }
-        lc.setName(local.getName());
-        lc.setCode(local.getCode());
-        lc.setFloor(local.getFloor());
+        if (Objects.nonNull(local.getName()) && !"".equalsIgnoreCase(local.getName())) {
+            lc.setName(local.getName());
+        }
+        if (Objects.nonNull(local.getCode()) && !"".equalsIgnoreCase(local.getCode())) {
+            lc.setCode(local.getCode());
+        }
+        if (Objects.nonNull(local.getFloor()) && !"".equalsIgnoreCase(local.getFloor())) {
+            lc.setFloor(local.getFloor());
+        }
         return localRepository.save(lc);
     }
 
