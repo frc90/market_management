@@ -10,4 +10,5 @@ public interface LocalServiceImpl {
     Local findById(Long id);
     Local update(Long id, Local local);
     String delete(Long id);
+    List<Local> findLocalByNameWithJPQL(String localName);
 }

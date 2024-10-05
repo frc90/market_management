@@ -23,6 +23,11 @@ public class LocalController {
         return localService.findById(id);
     }
 
+    @GetMapping("/findLocalByNameWithJPQL/{name}")
+        public List<Local> findLocalByNameWithJPQL(@PathVariable String name) {
+        return localService.findLocalByNameWithJPQL(name);
+    }
+
     @PostMapping("/local")
     public Local addLocal(@RequestBody Local local) {
         return localService.create(local);

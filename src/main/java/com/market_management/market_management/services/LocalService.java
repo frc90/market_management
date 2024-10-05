@@ -51,4 +51,9 @@ public class LocalService implements LocalServiceImpl{
         localRepository.deleteById(id);
         return "Local was removed!";
     }
+
+    @Override
+    public List<Local> findLocalByNameWithJPQL(String localName) {
+        return localRepository.findLocalByNameWithJPQL(localName);
+    }
 }
