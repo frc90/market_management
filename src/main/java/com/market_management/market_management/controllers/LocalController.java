@@ -1,5 +1,6 @@
 package com.market_management.market_management.controllers;
 
+import com.market_management.market_management.errors.LocalNotFoundException;
 import com.market_management.market_management.models.Local;
 import com.market_management.market_management.services.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class LocalController {
     }
 
     @GetMapping("/local/{id}")
-    public Local getLocalById(@PathVariable Long id) {
+    public Local getLocalById(@PathVariable Long id) throws LocalNotFoundException {
         return localService.findById(id);
     }
 
