@@ -13,6 +13,7 @@ public class LocalController {
     @Autowired
     private LocalService localService;
 
+    // Getter methods
     @GetMapping("/locals")
     public List<Local> getLocals() {
         return localService.getAll();
@@ -24,10 +25,16 @@ public class LocalController {
     }
 
     @GetMapping("/findLocalByNameWithJPQL/{name}")
-        public List<Local> findLocalByNameWithJPQL(@PathVariable String name) {
+    public List<Local> findLocalByNameWithJPQL(@PathVariable String name) {
         return localService.findLocalByNameWithJPQL(name);
     }
 
+    @GetMapping("/findLocalByNameAndWithJPQL/{name}/{floor}")
+    public List<Local> findLocalByNameAndWithJPQL(@PathVariable String name, @PathVariable String floor) {
+        return localService.findLocalByNameAndFloorWithJPQL(name, floor);
+    }
+
+    // Post methods
     @PostMapping("/local")
     public Local addLocal(@RequestBody Local local) {
         return localService.create(local);

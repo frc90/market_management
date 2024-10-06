@@ -56,4 +56,9 @@ public class LocalService implements LocalServiceImpl{
     public List<Local> findLocalByNameWithJPQL(String localName) {
         return localRepository.findLocalByNameWithJPQL(localName);
     }
+
+    @Override
+    public List<Local> findLocalByNameAndFloorWithJPQL(String localName, String floorName) {
+        return localRepository.findLocalByNameAndFloorWithJPQL(localName, floorName);
+    }
 }
