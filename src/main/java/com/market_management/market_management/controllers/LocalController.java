@@ -3,6 +3,7 @@ package com.market_management.market_management.controllers;
 import com.market_management.market_management.errors.LocalNotFoundException;
 import com.market_management.market_management.models.Local;
 import com.market_management.market_management.services.LocalService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class LocalController {
 
     // Post methods
     @PostMapping("/local")
-    public Local addLocal(@RequestBody Local local) {
+    public Local addLocal(@Valid @RequestBody Local local) {
         return localService.create(local);
     }
 
