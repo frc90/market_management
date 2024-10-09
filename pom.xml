@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.market-management</groupId>
 	<artifactId>market-management</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>market-management</name>
 	<description>Market Management project for Spring Boot</description>
 	<url/>
