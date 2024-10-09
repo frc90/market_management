@@ -1,0 +1,43 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: market-management
+  datasource:
+    password: ''
+    url: jdbc:mysql://localhost:3306/market_management
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: qa
+  application:
+    name: market-management
+  datasource:
+    password: ''
+    url: jdbc:mysql://localhost:3306/market_management_qa
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
