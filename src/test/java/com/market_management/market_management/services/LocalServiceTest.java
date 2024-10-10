@@ -1,6 +1,6 @@
 package com.market_management.market_management.services;
 
-import com.market_management.market_management.models.Local;
+import com.market_management.market_management.models.entities.Local;
 import com.market_management.market_management.repositories.LocalRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 

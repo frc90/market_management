@@ -1,4 +1,4 @@
-package com.market_management.market_management.models;
+package com.market_management.market_management.models.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

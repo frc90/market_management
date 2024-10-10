@@ -1,6 +1,6 @@
 package com.market_management.market_management.repositories;
 
-import com.market_management.market_management.models.Local;
+import com.market_management.market_management.models.entities.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

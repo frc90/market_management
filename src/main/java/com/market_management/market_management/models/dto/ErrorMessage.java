@@ -1,4 +1,4 @@
-package com.market_management.market_management.errors.dto;
+package com.market_management.market_management.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.market_management.market_management.errors;
 
-import com.market_management.market_management.errors.dto.ErrorMessage;
+import com.market_management.market_management.models.dto.ErrorMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -18,9 +18,9 @@ import java.util.Map;
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(LocalNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorMessage> localNotFoundException(LocalNotFoundException exception) {
+    public ResponseEntity<ErrorMessage> localNotFoundException(NotFoundException exception) {
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }

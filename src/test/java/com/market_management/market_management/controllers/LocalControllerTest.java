@@ -1,6 +1,6 @@
 package com.market_management.market_management.controllers;
 
-import com.market_management.market_management.models.Local;
+import com.market_management.market_management.models.entities.Local;
 import com.market_management.market_management.services.LocalService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

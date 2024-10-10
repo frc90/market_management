@@ -1,8 +1,9 @@
 package com.market_management.market_management.services;
 
-import com.market_management.market_management.errors.LocalNotFoundException;
-import com.market_management.market_management.models.Local;
+import com.market_management.market_management.errors.NotFoundException;
+import com.market_management.market_management.models.entities.Local;
 import com.market_management.market_management.repositories.LocalRepository;
+import com.market_management.market_management.services.impl.LocalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class LocalService implements LocalServiceImpl{
+public class LocalService implements LocalServiceImpl {
 
     @Autowired
     private LocalRepository localRepository;
@@ -26,10 +27,10 @@ public class LocalService implements LocalServiceImpl{
     }
 
     @Override
-    public Local findById(Long id) throws LocalNotFoundException {
+    public Local findById(Long id) throws NotFoundException {
         Optional<Local> local = localRepository.findById(id);
-        if (!local.isPresent()) {
-            throw new LocalNotFoundException("Local is not available");
+        if (local.isEmpty()) {
+            throw new NotFoundException("Local is not available");
         }
         return local.get();
     }
