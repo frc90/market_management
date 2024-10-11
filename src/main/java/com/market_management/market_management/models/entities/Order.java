@@ -23,4 +23,8 @@ public class Order {
 
     @Column(nullable = false)
     private Double amount;
+
+    @ManyToOne
+    @JoinColumn(name = "local_id")
+    private Local local;
 }
