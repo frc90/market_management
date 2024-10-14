@@ -1,6 +1,7 @@
 package com.market_management.market_management.services;
 
 import com.market_management.market_management.errors.NotFoundException;
+import com.market_management.market_management.models.entities.Address;
 import com.market_management.market_management.models.entities.Customer;
 import com.market_management.market_management.repositories.CustomerRepository;
 import com.market_management.market_management.services.impl.CustomerServiceImpl;
@@ -38,6 +39,8 @@ public class CustomerService implements CustomerServiceImpl {
         if (Objects.nonNull(customer.getEmail()) && !"".equalsIgnoreCase(customer.getEmail())) {
             cu.setEmail(customer.getEmail());
         }
+        Address ad = new Address(cu.getAddress().getCity(), cu.getAddress().getMainStreet(), cu.getAddress().getSecondaryStreet());
+        cu.setAddress(ad);
         customerRepository.save(cu);
         return cu;
     }
