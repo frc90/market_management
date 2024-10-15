@@ -1,6 +1,7 @@
 package com.market_management.market_management.repositories;
 
 import com.market_management.market_management.models.entities.Local;
+import com.market_management.market_management.models.entities.Manager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,5 +41,27 @@ class LocalRepositoryTest {
     public void findLocalByNameIgnoreCaseNotFound(){
         List<Local> local = localRepository.findLocalByNameWithJPQL("Burger");
         assertEquals(local, new ArrayList<Local>());
+    }
+
+    @Test
+    @DisplayName("Create Local with Manager")
+    public void createLocalWithManager(){
+        Manager manager = Manager.builder()
+                .firstName("Pablo")
+                .lastName("Perez")
+                .build();
+
+        Local local = Local.builder()
+                .code("ctd-10-15-2024")
+                .floor("floor 3")
+                .name("local 2")
+                .manager(manager)
+                .build();
+        localRepository.save(local);
+    }
+
+    @Test
+    public void getAll(){
+        localRepository.findAll();
     }
 }

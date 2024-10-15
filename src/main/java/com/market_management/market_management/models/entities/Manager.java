@@ -1,16 +1,20 @@
 package com.market_management.market_management.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@ToString(exclude = "local")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Manager {
 
     @Id
@@ -22,4 +26,11 @@ public class Manager {
 
     @Column(length = 50)
     private String lastName;
+
+    @OneToOne(
+            mappedBy = "manager",
+            fetch = FetchType.EAGER
+    )
+    @ToString.Exclude
+    private Local local;
 }

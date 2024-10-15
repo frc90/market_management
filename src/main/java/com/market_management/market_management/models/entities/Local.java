@@ -1,5 +1,7 @@
 package com.market_management.market_management.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -12,6 +14,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+//@ToString(exclude = "manager")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Local {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +34,17 @@ public class Local {
     @NotBlank(message = "Please add the code.")
     @Length(min = 4, max = 15)
     private String code;
+
+    @OneToOne(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "manager_id",
+            referencedColumnName = "id"
+    )
+    @ToString.Exclude
+    private Manager manager;
 
     @OneToMany(
             mappedBy = "local",
