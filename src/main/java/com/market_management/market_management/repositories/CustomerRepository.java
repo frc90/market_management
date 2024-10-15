@@ -3,6 +3,7 @@ package com.market_management.market_management.repositories;
 import com.market_management.market_management.models.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     String getCustomerFirstNameByEmailAddress(String email);
 
     @Query(
-            value = "select * from customer where email = ?1",
+            value = "select * from customer where email = :emailAddress",
             nativeQuery = true
     )
-    Optional<Customer> getCustomerFirstNameByEmailAddressNative(String email);
+    Optional<Customer> getCustomerFirstNameByEmailAddressNative(@Param("emailAddress") String email);
 }
