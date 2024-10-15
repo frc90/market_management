@@ -1,7 +1,9 @@
 package com.market_management.market_management.repositories;
 
 import com.market_management.market_management.models.entities.Customer;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -26,4 +28,13 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
             nativeQuery = true
     )
     Optional<Customer> getCustomerFirstNameByEmailAddressNative(@Param("emailAddress") String email);
+
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = "update customer set first_name = ?1 where email = ?2",
+            nativeQuery = true
+    )
+    void updateCustomerNameByEmail(String name, String email);
 }
