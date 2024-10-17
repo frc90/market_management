@@ -2,6 +2,7 @@ package com.market_management.market_management.repositories;
 
 import com.market_management.market_management.models.entities.Local;
 import com.market_management.market_management.models.entities.Manager;
+import com.market_management.market_management.models.entities.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,15 @@ class LocalRepositoryTest {
     LocalRepository localRepository;
 
     @Autowired
-    TestEntityManager entityManager;
+    ManagerRepository managerRepository;
+
+    @Autowired
+    OrderRepository orderRepository;
 
     @BeforeEach
     void setUp() {
-        Local local = Local.builder().name("Burger King").floor("3 floors").code("ctd-12-01-2024").build();
-        entityManager.persist(local);
+//        Local local = Local.builder().name("Burger King").floor("3 floors").code("ctd-12-01-2024").build();
+//        entityManager.persist(local);
     }
 
     @Test
@@ -63,5 +67,28 @@ class LocalRepositoryTest {
     @Test
     public void getAll(){
         localRepository.findAll();
+    }
+
+    @Test
+    public void saveLocalWithOrders(){
+        Manager manager = Manager.builder()
+                .firstName("Pedro")
+                .lastName("Gonzalez")
+                .build();
+        managerRepository.save(manager);
+        Local local = Local.builder()
+                .name("Italian Restaurant")
+                .floor("floor 3")
+                .name("local 3")
+                .manager(manager)
+                .build();
+        localRepository.save(local);
+        Order order = Order.builder()
+                .amount(50.54)
+                .description("Testing 1")
+                .local(local)
+                .build();
+        orderRepository.save(order);
+
     }
 }

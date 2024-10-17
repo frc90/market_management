@@ -30,7 +30,7 @@ public class Order {
     @Column(nullable = false)
     private Double amount;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "local_id")
     private Local local;
 }
