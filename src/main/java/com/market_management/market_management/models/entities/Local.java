@@ -55,4 +55,20 @@ public class Local {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Order> orders;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "local_customer_map",
+            joinColumns = @JoinColumn(
+                    name = "local_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "customer_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<Customer> customers;
 }

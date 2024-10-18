@@ -1,8 +1,6 @@
 package com.market_management.market_management.repositories;
 
-import com.market_management.market_management.models.entities.Local;
-import com.market_management.market_management.models.entities.Manager;
-import com.market_management.market_management.models.entities.Order;
+import com.market_management.market_management.models.entities.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -89,6 +87,40 @@ class LocalRepositoryTest {
                 .local(local)
                 .build();
         orderRepository.save(order);
+    }
 
+    @Test
+    public void saveLocalWithCustomer(){
+        Manager manager = Manager.builder()
+                .firstName("Pedro")
+                .lastName("Gonzalez")
+                .build();
+        managerRepository.save(manager);
+
+        Address address = Address.builder()
+                .city("Montevideo")
+                .mainStreet("street 1")
+                .secondaryStreet("street 2")
+                .build();
+
+        Customer customer = Customer.builder()
+                .firstName("Francisco")
+                .lastName("Padron")
+                .address(address)
+                .build();
+        Customer customer2 = Customer.builder()
+                .firstName("Francisco2")
+                .lastName("Padron2")
+                .address(address)
+                .build();
+
+        Local local = Local.builder()
+                .name("Italian Restaurant")
+                .floor("floor 3")
+                .name("local 3")
+                .manager(manager)
+                .customers(List.of(customer, customer2))
+                .build();
+        localRepository.save(local);
     }
 }
